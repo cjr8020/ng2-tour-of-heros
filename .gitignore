@@ -1,5 +1,3 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
 # compiled output
 /dist
 /tmp
@@ -10,10 +8,8 @@
 
 # IDEs and editors
 /.idea
-/.vscode
 .project
 .classpath
-.c9/
 *.launch
 .settings/
 
@@ -30,6 +26,37 @@ testem.log
 /e2e/*.js
 /e2e/*.map
 
-#System Files
+
+####### common ignores below #######
+
+# VSCode
+.vscode/*
+
+# Eclipse/RAD
+.settings/
+.metadata/
+classes/
+
+# JetBrains IntellijIDEA/WebStorm
+.idea/
+*.iml
+*.iws
+
+# System Files
 .DS_Store
 Thumbs.db
+
+# Numerous always-ignore extensions
+*.diff
+*.bak
+*.tmp
+*.moved
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.zip
+*.vi
+*~
