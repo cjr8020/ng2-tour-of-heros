@@ -10,6 +10,25 @@ installing class
   create src/app/hero.ts
 ```
 
+#### Tour of Heroes navigation
+
+![nav diag](./src/assets/nav-diagram.png)
+
+Here is the plan:
+
+* turn `AppComponent` into an application shell that only handles navigation
+
+  our current app loads `AppComponent` and immediately displays the list of heroes.
+  the revised app should present a shell with a choice of views 
+  (Dashboard and Heroes) and then default to one of them.
+  
+
+* Relocate the `Heroes` concerns within the current `AppComponent` to a separate
+  `HeroesComponent`
+* Add routing
+* Create a new `DashBoardComponent`
+* Tie the `Dashboard` into the nav structure  
+
 
 
 ## Development server
