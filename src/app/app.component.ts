@@ -1,5 +1,6 @@
+import { HeroesComponent } from './heroes.component';
 // import { Ng2TourOfHerosPage } from '../../e2e/app.po';
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentRef, OnInit } from '@angular/core';
 import { HeroService } from './hero.service';
 import { Hero } from './hero';
 
@@ -12,7 +13,14 @@ import { Hero } from './hero';
     <h1>{{title}}</h1>
     <div class="header-bar"></div>
 
-    <app-heroes></app-heroes>
+    <!-- 
+      now, instead of dispayng the HeroesComponent right away, 
+      we display a router link hooked up to that Component
+    --> 
+    <!--<app-heroes></app-heroes>-->
+
+    <a routerLink="/heroes">Heroes</a>
+    <router-outlet></router-outlet>
 
   `,
   styleUrls: ['./app.component.css']
