@@ -1,13 +1,11 @@
 import { HeroesComponent } from './heroes.component';
-// import { Ng2TourOfHerosPage } from '../../e2e/app.po';
 import { Component, ComponentRef, OnInit } from '@angular/core';
-import { HeroService } from './hero.service';
 import { Hero } from './hero';
 
 
 @Component({
   selector: 'app-root',
-  providers: [HeroService],
+  providers: [],
   template: `
 
     <h1>{{title}}</h1>

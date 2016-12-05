@@ -10,6 +10,18 @@ installing class
   create src/app/hero.ts
 ```
 
+#### Hero service
+
+removed `HeroService` from the `providers` array of `HeroesComponent`, and
+added it to the `providers` array of `AppModule`.
+
+That move created a singleton `HeroService` instance, available to `all`
+components of the application.
+
+Angular will inject `HeroService`  and it will be avaible for `DashboardComponent`
+as well.
+
+
 #### Tour of Heroes navigation
 
 ![nav diag](./src/assets/nav-diagram.png)
