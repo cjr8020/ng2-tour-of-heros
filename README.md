@@ -30,6 +30,32 @@ Here is the plan:
 * Tie the `Dashboard` into the nav structure  
 
 
+##### routing
+
+We want the app to show the dashboard when it starts and we want to see 
+a nice URL in the browser address bar that says `/dashboard`.
+We can use a `redirect` route to make this happen:
+
+```
+    RouterModule.forRoot([
+      {
+        path: 'heroes',
+        component:HeroesComponent
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
+      {
+        path: '',
+        redirectTo: '/dashboard',
+        pathMatch: 'full'
+      }
+    ])
+```
+
+
+
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
