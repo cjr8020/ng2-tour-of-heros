@@ -66,6 +66,25 @@ We can use a `redirect` route to make this happen:
     ])
 ```
 
+#### navigate to hero detail
+
+1. from the `Dashboard` to a selected hero
+2. from the `Heroes` list to a selected hero
+3. from a "deep link" URL pasted into the browser address bar
+
+Step 1 - added a hero-detail route...
+
+```
+      {
+        path: 'detail/:id',
+        component: HeroDetailComponent
+      }
+```
+
+`HeroDetailComponent` no longer receives `hero` from its parent component.
+It should take the `id` param from the `params` observable in the 
+`ActivateRoute` service and use the `HeroService` to fetch the hero with
+that id.
 
 
 
