@@ -86,6 +86,58 @@ It should take the `id` param from the `params` observable in the
 `ActivateRoute` service and use the `HeroService` to fetch the hero with
 that id.
 
+#### refactored routing
+
+app-routing.module.ts
+
+```
+import { NgModule }               from '@angular/core';
+import { RouterLink, RouterModule, Routes } from '@angular/router';
+import { HeroesComponent } from './heroes.component';
+import { DashboardComponent } from './dashboard.component';
+import { HeroDetailComponent } from './hero-detail.component';
+
+const routes: Routes = [
+  { path: 'heroes', component:HeroesComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'detail/:id', component: HeroDetailComponent }
+];
+
+@NgModule({
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
+})
+export class AppRoutingModule {}
+```
+
+app.module.ts
+
+```
+.
+.
+.
+import { AppRoutingModule } from './app-routing.module';
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeroDetailComponent,
+    HeroesComponent,
+    DashboardComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    AppRoutingModule
+  ],
+  providers: [HeroService],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
 
 ## Development server
