@@ -1,3 +1,4 @@
+import { RouterLinkActive } from '@angular/router';
 import { HeroesComponent } from './heroes.component';
 import { Component, ComponentRef, OnInit } from '@angular/core';
 import { Hero } from './hero';
@@ -18,8 +19,8 @@ import { Hero } from './hero';
     <!--<app-heroes></app-heroes>-->
 
     <nav>
-      <a routerLink="/dashboard">Dashboard</a>
-      <a routerLink="/heroes">Heroes</a>
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
     </nav>
     <router-outlet></router-outlet>
 
