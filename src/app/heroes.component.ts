@@ -30,10 +30,10 @@ export class HeroesComponent implements OnInit {
   /*
    * simulates slow service 
    */
-  getHeroesSlowly(): void {
-    this.heroService.getHeroesSlowly()
-      .then(heroes => this.heroes = heroes);
-  }
+  // getHeroesSlowly(): void {
+  //   this.heroService.getHeroesSlowly()
+  //     .then(heroes => this.heroes = heroes);
+  // }
 
 
   onSelect(hero: Hero): void {
