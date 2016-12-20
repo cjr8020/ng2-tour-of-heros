@@ -30,7 +30,7 @@ testem.log
 ####### common ignores below #######
 
 # VSCode
-.vscode/*
+# .vscode/*  should be consistent across all devs?
 
 # Eclipse/RAD
 .settings/

@@ -146,6 +146,20 @@ use in-memory web API to mock a service
 
 
 
+#### search-by-name feature
+
+as the user types a name into a search box, make repeated http requests
+filtered by that name.
+
+```
+$ ng g s hero-search --flat
+installing service
+  create src/app/hero-search.service.spec.ts
+  create src/app/hero-search.service.ts
+  WARNING Service is generated but not provided, it must be provided to be used
+```
+
+
 
 
 
@@ -176,3 +190,39 @@ Run `ng github-pages:deploy` to deploy to Github Pages.
 ## Further help
 
 To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+###   Configuring TS Version for VS Code 
+
+VS Code ships with a recent stable version of TypeScript.
+It also performs version checking for any version of TypeScript you may have
+installed globally or locally in your workspace.
+
+```
+  $ npm list typescript // locally 
+
+  $ npm list typescript -g // globally
+```
+
+By default, VS Code will warn if your global version is different than VS Code's
+TS version since this may cause inconsistent compiler errors when building
+your project within VS Code and in an external terminal.
+
+You can also direct VS Code to use your workspace TypeScript version with the
+'typescript.tsdk' setting pointing to a directory containing the TS 
+'tsserver.js' file.
+
+e.g. to instruct VS Code to use the TS version in your workspace node_modules:
+
+  workspace settings.json:
+
+```
+    {
+      "typescript.tsdk": "./node_modules/typescript/lib"
+    }
+```
+
+After setting typescript.tsdk, restart VS Code and the TypeScript version
+will be shown in the bottom right of the Status Bar when you open a JavaScript
+or TypeScript file.
+
