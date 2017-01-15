@@ -160,9 +160,6 @@ installing service
 ```
 
 
-
-
-
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
@@ -225,4 +222,73 @@ e.g. to instruct VS Code to use the TS version in your workspace node_modules:
 After setting typescript.tsdk, restart VS Code and the TypeScript version
 will be shown in the bottom right of the Status Bar when you open a JavaScript
 or TypeScript file.
+
+
+## Deploying to Apache
+
+Suppose, you're about to deploy this app to an apache 2.2 instance to an 
+Alias'ed path:
+
+```
+Alias /ng/ "/apps/angular-apps/"
+<Directory /apps/angular-apps>
+  Order allow,deny
+  Allow from all
+  AllowOverride All
+</Directory>
+```
+Angular2 Router supports two techniques for managing browser's location and history:
+
+1. PathLocationStrategy - the default "HTML 5 pushState" style
+2. HashLocationStrategy - the "hash URL" style (for real old browsers)
+
+To make `PathLocationStrategy` work on Apache, you will need to create an
+`.htaccess` file in the same location as your index.HTML
+
+Taking into consideration the above httpd.conf snippet, here's the `.htaccess` 
+file content:
+
+```
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /ng/tour-of-heroes/
+  RewriteRule ^index\.html$ - [L]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # do not rewrite css, js and images
+  RewriteCond %{REQUEST_URI} !\.(?:css|js|map|jpe?g|gif|png)$ [NC]
+
+  RewriteRule . /ng/tour-of-heroes/index.html [L]
+</IfModule>
+```
+
+Finally, generate the `prod` distribution for this application to be deployed
+on the apache server using the following command:
+
+```
+$ ng build --prod --base-href /ng/tour-of-heroes/
+```
+This will ensure that the generated `index.html` file has `base href` that 
+matches our target server configuration:
+
+```
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ng2TourOfHeros</title>
+  <base href="/ng/tour-of-heroes/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href="styles.622c1e2152786c612d9feac19a219d0e.bundle.css" rel="stylesheet"></head>
+<body>
+  <app-root>Loading...</app-root>
+<script type="text/javascript" src="inline.d41d8cd98f00b204e980.bundle.js"></script><script type="text/javascript" src="styles.b2328beb0372c051d06d.bundle.js"></script><script type="text/javascript" src="main.19929f08046e175b7224.bundle.js"></script></body>
+</html>
+```
+
+
 
