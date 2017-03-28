@@ -1,6 +1,34 @@
 # Ng2TourOfHeros
 
+
+This project was updated to Angular 4 and Angular CLI 1.0.0
+
+Angular CLI [update process] (https://github.com/angular/angular-cli/wiki/stories-rc.0-update)
+
+   / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+  / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+ / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+/_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+               |___/
+@angular/cli: 1.0.0
+node: 7.6.0
+os: linux x64
+@angular/common: 4.0.0
+@angular/compiler: 4.0.0
+@angular/core: 4.0.0
+@angular/forms: 4.0.0
+@angular/http: 4.0.0
+@angular/platform-browser: 4.0.0
+@angular/platform-browser-dynamic: 4.0.0
+@angular/router: 4.0.0
+@angular/cli: 1.0.0
+@angular/compiler-cli: 4.0.0
+
+
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.21.
+
+
 
 #### create Hero class
 
@@ -289,6 +317,286 @@ matches our target server configuration:
 <script type="text/javascript" src="inline.d41d8cd98f00b204e980.bundle.js"></script><script type="text/javascript" src="styles.b2328beb0372c051d06d.bundle.js"></script><script type="text/javascript" src="main.19929f08046e175b7224.bundle.js"></script></body>
 </html>
 ```
+
+
+## Updating to Angular CLI 1.0.0
+
+
+### Step 1:  update node and npm to latest stable version
+
+```
+          node      npm         angular-cli
+before    7.2.1     3.10.10     1.0.0-beta.21
+latest    7.6.0     4.1.2       1.0.0
+```
+
+**before** `package.json`
+
+```
+{
+  "name": "ng2-tour-of-heros",
+  "version": "0.0.0",
+  "license": "MIT",
+  "angular-cli": {},
+  "scripts": {
+    "start": "ng serve",
+    "lint": "tslint \"src/**/*.ts\"",
+    "test": "ng test",
+    "pree2e": "webdriver-manager update",
+    "e2e": "protractor"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "2.2.1",
+    "@angular/compiler": "2.2.1",
+    "@angular/core": "2.2.1",
+    "@angular/forms": "2.2.1",
+    "@angular/http": "2.2.1",
+    "@angular/platform-browser": "2.2.1",
+    "@angular/platform-browser-dynamic": "2.2.1",
+    "@angular/router": "3.2.1",
+    "angular-in-memory-web-api": "^0.1.17",
+    "core-js": "^2.4.1",
+    "rxjs": "5.0.0-beta.12",
+    "ts-helpers": "^1.1.1",
+    "zone.js": "^0.6.23"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "2.2.1",
+    "@types/jasmine": "2.5.38",
+    "@types/node": "^6.0.42",
+    "angular-cli": "1.0.0-beta.21",
+    "codelyzer": "~1.0.0-beta.3",
+    "jasmine-core": "2.5.2",
+    "jasmine-spec-reporter": "2.5.0",
+    "karma": "1.2.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-cli": "^1.0.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-remap-istanbul": "^0.2.1",
+    "protractor": "4.0.9",
+    "ts-node": "1.2.1",
+    "tslint": "3.13.0",
+    "typescript": "~2.0.3",
+    "webdriver-manager": "10.2.5"
+  }
+}
+```
+
+### Step 2: update angular CLI 
+
+If you're using beta.28 or less, you need to uninstall `angular-cli` package
+due to name change `angular-cli` to `@angular/cli`
+
+both global and local:
+
+```
+  $ sudo npm uninstall -g angular-cli
+  $ npm uninstall --save-dev angular-cli
+```
+
+The second line removed `"angular-cli": "1.0.0-beta.21"` from `package.json`
+
+Update both global and local Angular CLI to new version.
+
+Global 
+
+```
+  $ sudo npm uninstall -g @angular/cli   # in case you've installed it before
+  $ sudo npm cache clean -f
+  $ sudo npm install -g @angular/cli@latest
+```
+
+Local
+
+```
+  $ rm -rf node_modules dist
+  $ npm install --save-dev @angular/cli@latest
+```
+
+    this adds `"@angular/cli": "^1.0.0"`, to `package.json`
+
+```
+  $ npm install   // ERRORS after this --> see fixes below
+```
+
+### Step 3: Fix Versions across the entire package.json
+
+
+Issue: `ng serve` produces:
+
+```
+    Version of @angular/compiler-cli needs to be 2.3.1 or greater. Current version is "undefined".
+```
+
+**after** `package.json`
+
+```
+{
+  "name": "ng2-tour-of-heros",
+  "version": "0.0.0",
+  "license": "MIT",
+  "angular-cli": {},
+  "scripts": {
+    "start": "ng serve",
+    "lint": "tslint \"src/**/*.ts\"",
+    "test": "ng test",
+    "pree2e": "webdriver-manager update",
+    "e2e": "protractor"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "^2.3.1",
+    "@angular/compiler": "^2.3.1",
+    "@angular/core": "^2.3.1",
+    "@angular/forms": "^2.3.1",
+    "@angular/http": "^2.3.1",
+    "@angular/platform-browser": "^2.3.1",
+    "@angular/platform-browser-dynamic": "^2.3.1",
+    "@angular/router": "^3.3.1",
+    "angular-in-memory-web-api": "^0.1.17",
+    "core-js": "^2.4.1",
+    "rxjs": "^5.0.1",
+    "ts-helpers": "^1.1.1",
+    "zone.js": "^0.7.2"
+  },
+  "devDependencies": {
+    "@angular/cli": "^1.0.0",
+    "@angular/compiler-cli": "^2.3.1",
+    "@types/jasmine": "2.5.38",
+    "@types/node": "^6.0.42",
+    "codelyzer": "~1.0.0-beta.3",
+    "jasmine-core": "2.5.2",
+    "jasmine-spec-reporter": "2.5.0",
+    "karma": "1.2.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-cli": "^1.0.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-remap-istanbul": "^0.2.1",
+    "protractor": "~4.0.13",
+    "ts-node": "1.2.1",
+    "tslint": "^4.0.2",
+    "typescript": "^2.2.1",
+    "webdriver-manager": "^12.0.4"
+  }
+}
+```
+
+
+Issue: `Environment configuration does not contain "environmentSource" entry`
+
+
+A new environmentSource entry replaces the previous source entry inside environments.
+
+To migrate angular-cli.json follow the example below:
+
+Before:
+
+```
+"environments": {
+  "source": "environments/environment.ts",
+  "dev": "environments/environment.ts",
+  "prod": "environments/environment.prod.ts"
+}
+```
+
+After:
+
+```
+"environmentSource": "environments/environment.ts",
+"environments": {
+  "dev": "environments/environment.ts",
+  "prod": "environments/environment.prod.ts"
+}
+```
+
+
+
+
+** AT THIS POINT, THE PROJECT IS RUNNING ON ANGULAR CLI 1.0.0 **
+
+
+## Angular 4.0.0
+
+```
+    _                      _                 ____ _     ___
+   / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+  / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+ / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+/_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+               |___/
+@angular/cli: 1.0.0
+node: 7.6.0
+os: linux x64
+@angular/common: 4.0.0
+@angular/compiler: 4.0.0
+@angular/core: 4.0.0
+@angular/forms: 4.0.0
+@angular/http: 4.0.0
+@angular/platform-browser: 4.0.0
+@angular/platform-browser-dynamic: 4.0.0
+@angular/router: 4.0.0
+@angular/cli: 1.0.0
+@angular/compiler-cli: 4.0.0
+```
+
+
+for comparison, here is `package.json` from a newly-created project with
+angular cli 1.0.0:
+
+```
+{
+  "name": "cli-one-dot-o",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "^4.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "@angular/http": "^4.0.0",
+    "@angular/platform-browser": "^4.0.0",
+    "@angular/platform-browser-dynamic": "^4.0.0",
+    "@angular/router": "^4.0.0",
+    "core-js": "^2.4.1",
+    "rxjs": "^5.1.0",
+    "zone.js": "^0.8.4"
+  },
+  "devDependencies": {
+    "@angular/cli": "1.0.0",
+    "@angular/compiler-cli": "^4.0.0",
+    "@types/jasmine": "2.5.38",
+    "@types/node": "~6.0.60",
+    "codelyzer": "~2.0.0",
+    "jasmine-core": "~2.5.2",
+    "jasmine-spec-reporter": "~3.2.0",
+    "karma": "~1.4.1",
+    "karma-chrome-launcher": "~2.0.0",
+    "karma-cli": "~1.0.1",
+    "karma-jasmine": "~1.1.0",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-coverage-istanbul-reporter": "^0.2.0",
+    "protractor": "~5.1.0",
+    "ts-node": "~2.0.0",
+    "tslint": "~4.5.0",
+    "typescript": "~2.2.0"
+  }
+}
+```
+
+
+
+
+
 
 
 
