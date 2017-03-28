@@ -5,6 +5,8 @@ This project was updated to Angular 4 and Angular CLI 1.0.0
 
 Angular CLI [update process] (https://github.com/angular/angular-cli/wiki/stories-rc.0-update)
 
+```
+
    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
@@ -23,7 +25,7 @@ os: linux x64
 @angular/router: 4.0.0
 @angular/cli: 1.0.0
 @angular/compiler-cli: 4.0.0
-
+```
 
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.21.
